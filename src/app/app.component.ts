@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Post } from './post.model';
+import * as PostActions from './post.actions'
+
+// interface AppState {
+//   message: string;
+// }
 
 interface AppState {
-  message: string;
+  post: Post;
 }
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,14 +18,36 @@ interface AppState {
 })
 export class AppComponent {
   title = 'ngrxfire';
-  message$: Observable<string> | undefined;
+  // message$: Observable<string> | undefined;
+  post: Observable<Post>;
+  text: string = '';
+
   constructor (private store: Store<AppState>) {
-    this.message$ = this.store.select('message');
+    // this.message$ = this.store.select('message');
+    this.post = this.store.select('post');
   }
-  spanishMessage() {
-    this.store.dispatch({type: 'SPANISH'})
+
+  editText() {
+    this.store.dispatch(new PostActions.EditText(this.text));
   }
-  frenchMessage() {
-    this.store.dispatch({type: 'FRENCH'})
+
+  resetPost() {
+    this.store.dispatch(new PostActions.Reset());
   }
+
+  upvote() {
+    this.store.dispatch(new PostActions.Upvote);
+  }
+
+  downvote() {
+    this.store.dispatch(new PostActions.DownVote);
+  }
+
+
+  // spanishMessage() {
+  //   this.store.dispatch({type: 'SPANISH'})
+  // }
+  // frenchMessage() {
+  //   this.store.dispatch({type: 'FRENCH'})
+  // }
 }
