@@ -3,11 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Post } from './post.model';
 import * as PostActions from './post.actions'
-
-// interface AppState {
-//   message: string;
-// }
-
 interface AppState {
   post: Post;
 }
@@ -18,12 +13,10 @@ interface AppState {
 })
 export class AppComponent {
   title = 'ngrxfire';
-  // message$: Observable<string> | undefined;
   post: Observable<Post>;
   text: string = '';
 
   constructor (private store: Store<AppState>) {
-    // this.message$ = this.store.select('message');
     this.post = this.store.select('post');
   }
 
@@ -43,11 +36,4 @@ export class AppComponent {
     this.store.dispatch({type: PostActions.DOWNVOTE});
   }
 
-
-  // spanishMessage() {
-  //   this.store.dispatch({type: 'SPANISH'})
-  // }
-  // frenchMessage() {
-  //   this.store.dispatch({type: 'FRENCH'})
-  // }
 }

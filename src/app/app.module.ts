@@ -24,5 +24,4 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppModule { }
 
-// import { simpleReducer } from './simple.reducer';
-// message: simpleReducer
+
