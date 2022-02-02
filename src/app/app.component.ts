@@ -28,19 +28,19 @@ export class AppComponent {
   }
 
   editText() {
-    this.store.dispatch(new PostActions.EditText(this.text));
+    this.store.dispatch({type: PostActions.EDIT_TEXT, payload: this.text});
   }
 
   resetPost() {
-    this.store.dispatch(new PostActions.Reset());
+   this.store.dispatch({type: PostActions.RESET});
   }
 
   upvote() {
-    this.store.dispatch(new PostActions.Upvote);
+    this.store.dispatch({type: PostActions.UPVOTE});
   }
 
   downvote() {
-    this.store.dispatch(new PostActions.DownVote);
+    this.store.dispatch({type: PostActions.DOWNVOTE});
   }
 
 

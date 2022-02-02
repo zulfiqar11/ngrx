@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { simpleReducer } from './simple.reducer';
 import { CommonModule } from '@angular/common';
 import { postReducer } from './post.reducer';
 import { FormsModule } from '@angular/forms';
@@ -17,12 +16,13 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     StoreModule.forRoot({
-      post: postReducer,
-      message: simpleReducer
-    })
+                    post: postReducer
+                  })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
+// import { simpleReducer } from './simple.reducer';
+// message: simpleReducer

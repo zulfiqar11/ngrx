@@ -1,31 +1,25 @@
 import * as PostActions from './post.actions';
-import { Post } from './post.model';
+import { Actions } from './post.actions';
 
-export type Action = PostActions.All;
-
-const defaultState: Post = {
+export const defaultState = {
   text: 'Hello, I am the default post',
   likes: 0
 }
 
-const newState = (state: any, newData: any) => {
-  return Object.assign({}, state, newData)
-}
-
-export function postReducer(state: Post = defaultState, action: Action) {
-  console.log(action.type, state);
+export function postReducer(state = defaultState, action: Actions) {
+  console.log(action.type, state, action);
 
   switch(action.type) {
-    case PostActions.EDIT_TEXT:
-      return newState(state, { text: action }); // could not get payload
-    case PostActions.UPVOTE:
-      return newState(state, { likes: state.likes + 1 });
-    case PostActions.DOWNVOTE:
-      return newState(state, { likes: state.likes - 1 });
-    case PostActions.RESET:
-      return defaultState;
-    default:
-      return state;
+    case PostActions.EDIT_TEXT: {
+      let message = '';
+      if (action.hasOwnProperty('payload')) {
+        message = (<PostActions.EditText>action).payload;
+      }
+      return {...state, text: message };
+    }
+    case PostActions.UPVOTE: return {...state, likes: state.likes + 1};
+    case PostActions.DOWNVOTE: return {...state, likes: state.likes - 1};
+    case PostActions.RESET: return {... state, text: defaultState.text, likes: defaultState.likes} ;
+    default: return defaultState;
   }
 }
-
