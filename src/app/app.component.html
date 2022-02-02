@@ -1,14 +1,6 @@
-<!-- {{ message$ | async }}
-
-<br /><br />
-<br />
-
-<button (click)="spanishMessage()">Spanish</button>
-<button (click)="frenchMessage()">French</button> -->
-
-<div *ngIf="post | async as p">
-  <h2>{{ p.text }}</h2>
-  <h2>Votes: {{ p.likes }}</h2>
+<div *ngIf="post$ | async as post">
+  <h2>{{ post.text }}</h2>
+  <h2>Votes: {{ post.likes }}</h2>
 
   <button (click)="upvote()">Upvote</button>
   <button (click)="downvote()">Downvote</button>

@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-import { Post } from './post.model';
 
 export const EDIT_TEXT = '[Post] Edit';
 export const UPVOTE = '[Post] Upvote';

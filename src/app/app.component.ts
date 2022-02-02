@@ -12,12 +12,11 @@ interface AppState {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ngrxfire';
-  post: Observable<Post>;
+  post$: Observable<Post>;
   text: string = '';
 
   constructor (private store: Store<AppState>) {
-    this.post = this.store.select('post');
+    this.post$ = this.store.select('post');
   }
 
   editText() {
